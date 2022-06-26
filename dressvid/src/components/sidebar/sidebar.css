@@ -48,26 +48,6 @@
   font-size: 1.5rem;
 }
 
-.search-area {
-  width: 500px;
-  display: flex;
-  column-gap: 1rem;
-}
-
-.search-area input {
-  width: 400px;
-  border-radius: 0.5rem;
-  font-size: 20px;
-  outline: none;
-}
-
-.search-area button {
-  width: 80px;
-  cursor: pointer;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-}
-
 .signIn-btn-container button {
   height: 50px;
   cursor: pointer;
@@ -78,6 +58,7 @@
   justify-content: center;
   align-items: center;
   font-size: 1rem;
+  /* font-weight: 600; */
 }
 
 /* Sidebar css */
@@ -116,7 +97,7 @@
 
 .sideBar-text {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   padding: 8px 0px 8px 16px;
   list-style: none;

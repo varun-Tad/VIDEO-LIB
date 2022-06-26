@@ -19,7 +19,6 @@ img {
   flex-direction: row;
   row-gap: 5rem;
   text-align: center;
-  /* flex-wrap: wrap; */
 }
 
 .brands {

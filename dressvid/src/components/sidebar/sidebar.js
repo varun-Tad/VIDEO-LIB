@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { BsDisplay } from "react-icons/bs";
-import { BsSearch } from "react-icons/bs";
 import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./sidebar.data";
@@ -28,15 +27,8 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <div className="search-area">
-          <input type="search" placeholder="Search" />
-          <button type="button">
-            <BsSearch />
-          </button>
-        </div>
-
         <div className="signIn-btn-container">
-          <button>
+          <button className="signIn-btn">
             <FaRegUserCircle /> Sign In
           </button>
         </div>
