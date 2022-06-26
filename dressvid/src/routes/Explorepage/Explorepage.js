@@ -21,6 +21,7 @@ const Explorepage = () => {
         <button>Courses</button>
         <button>Vlogs</button>
       </div>
+      <main className="main-section"></main>
     </div>
   );
 };
