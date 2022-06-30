@@ -11,7 +11,7 @@ import "./sidebar.css";
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
 
-  const showSideBar = () => {
+  const toggleSideBar = () => {
     setSidebar(!sidebar);
   };
   return (
@@ -19,7 +19,7 @@ const Sidebar = () => {
       <div className="navbar">
         <div className="yoo">
           <Link to="#" className="menu-bars">
-            <FaIcons.FaBars onClick={showSideBar} />
+            <FaIcons.FaBars onClick={toggleSideBar} />
           </Link>
           <div className="logo-name-container">
             <BsDisplay className="logo" />
@@ -34,14 +34,14 @@ const Sidebar = () => {
         </div>
       </div>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-        <ul className="nav-menu-items" onClick={showSideBar}>
+        <ul className="nav-menu-items" onClick={toggleSideBar}>
           <li className="navbar-toggle">
             <div className="logo-name-container">
               <BsDisplay className="logo" />
               <span className="logo-text">Dressvid</span>
             </div>
             <Link to="#" className="close-bars">
-              <AiIcons.AiOutlineClose onClick={showSideBar} />
+              <AiIcons.AiOutlineClose onClick={toggleSideBar} />
             </Link>
           </li>
           {SidebarData.map((item, index) => {
