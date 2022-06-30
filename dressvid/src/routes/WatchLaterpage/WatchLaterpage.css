@@ -1,0 +1,64 @@
+.main-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  margin-left: 18rem;
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+}
+
+.optionCard {
+  width: 24.6%;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: transform 0.2s;
+  padding-bottom: 1rem;
+}
+
+.optionCard:hover {
+  transform: scale(1.2);
+}
+
+.image-container img {
+  width: 17.5rem;
+  height: 12rem;
+}
+
+.text-container h3 {
+  text-align: left;
+  font-size: 1rem;
+  padding-left: 1rem;
+}
+
+.channel-name {
+  display: block;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.deleteCard {
+  margin-right: 1rem;
+  font-size: 1.5rem;
+}
+
+.empty-message {
+  margin-top: 15rem;
+}
+
+.empty-message p {
+  font-size: 2rem;
+}
+
+.empty-message button {
+  width: 9rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}

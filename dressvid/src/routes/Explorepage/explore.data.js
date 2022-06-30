@@ -17,6 +17,7 @@ export const exploreData = [
     img: img1,
     channelName: "Fashion Today",
     url: "https://www.youtube.com/embed/rmGT4KoxKas",
+    watchLaterExists: false,
   },
   {
     id: 2,
@@ -25,6 +26,7 @@ export const exploreData = [
     img: img2,
     channelName: "Fashion up",
     url: "https://www.youtube.com/embed/Sz51U7ojbtk",
+    watchLaterExists: false,
   },
   {
     id: 3,
@@ -33,6 +35,7 @@ export const exploreData = [
     img: img3,
     channelName: "Julian Michael",
     url: "https://www.youtube.com/embed/6RMD87AiHV8",
+    watchLaterExists: false,
   },
   {
     id: 4,
@@ -41,6 +44,7 @@ export const exploreData = [
     img: img4,
     channelName: "Versace",
     url: "https://www.youtube.com/embed/zsu2WRFaUoQ",
+    watchLaterExists: false,
   },
   {
     id: 5,
@@ -49,6 +53,7 @@ export const exploreData = [
     img: img5,
     channelName: "Harpers Bazaar",
     url: "https://www.youtube.com/embed/1ZyneUUVzdA",
+    watchLaterExists: false,
   },
   {
     id: 6,
@@ -57,6 +62,7 @@ export const exploreData = [
     img: img6,
     channelName: "Louis Vuitton",
     url: "https://www.youtube.com/embed/yekdy9NZCdw",
+    watchLaterExists: false,
   },
   {
     id: 7,
@@ -65,6 +71,7 @@ export const exploreData = [
     img: img7,
     channelName: "Givenchy",
     url: "https://www.youtube.com/embed/8JKrvQxkIE0",
+    watchLaterExists: false,
   },
   {
     id: 8,
@@ -73,6 +80,7 @@ export const exploreData = [
     img: img8,
     channelName: "Tad Var",
     url: "https://www.youtube.com/embed/obHklzJPhnY",
+    watchLaterExists: false,
   },
 
   {
@@ -82,6 +90,7 @@ export const exploreData = [
     img: img9,
     channelName: "Fashion Today",
     url: "https://www.youtube.com/embed/oXVwuRsBYXI",
+    watchLaterExists: false,
   },
 
   {
@@ -91,5 +100,6 @@ export const exploreData = [
     img: img10,
     channelName: "Manu Rios",
     url: "https://www.youtube.com/embed/liOCXfHhnCs",
+    watchLaterExists: false,
   },
 ];
