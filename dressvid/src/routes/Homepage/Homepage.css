@@ -1,0 +1,85 @@
+.home {
+  overflow-x: hidden;
+  margin-bottom: 5rem;
+}
+
+img {
+  height: 600px;
+  width: 1500px;
+}
+
+.tag-line {
+  position: relative;
+  bottom: 20rem;
+  font-size: 50px;
+  color: white;
+}
+.categories {
+  display: flex;
+  flex-direction: row;
+  row-gap: 5rem;
+  text-align: center;
+}
+
+.brands {
+  width: 25%;
+  height: 15rem;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  margin: 0 7.5px 15px;
+  overflow: hidden;
+  background-position: center;
+}
+
+.fashionShows {
+  width: 25%;
+  height: 15rem;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  margin: 0 7.5px 15px;
+  overflow: hidden;
+}
+
+.fashionCourse {
+  width: 25%;
+  height: 15rem;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  margin: 0 7.5px 15px;
+  overflow: hidden;
+}
+
+.fashionVlogs {
+  width: 25%;
+  height: 15rem;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  margin: 0 7.5px 15px;
+  overflow: hidden;
+}
+
+h2 {
+  background-color: rgba(247, 248, 250, 0.4);
+  text-align: center;
+  position: relative;
+  left: 46rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.title {
+  text-align: center;
+  font-size: 3rem;
+}
