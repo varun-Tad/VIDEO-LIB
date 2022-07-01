@@ -95,7 +95,7 @@ export const exploreData = [
 
   {
     id: 10,
-    name: "paris fashion week with Dior | vlog",
+    name: "Paris fashion week with Dior | vlog",
     category: "Vlogs",
     img: img10,
     channelName: "Manu Rios",

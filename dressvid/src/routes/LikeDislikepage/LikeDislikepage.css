@@ -19,6 +19,10 @@
   transform: scale(1.2);
 }
 
+.liked-heading {
+  margin-left: 37rem;
+}
+
 .image-container img {
   width: 17.5rem;
   height: 12rem;
@@ -47,38 +51,20 @@
   font-size: 1.5rem;
 }
 
-.empty-message {
+.empty-Likemessage {
   margin-top: 15rem;
+  margin-left: 30rem;
 }
 
-.empty-message p {
+.empty-Likemessage p {
   font-size: 2rem;
+  margin-left: 5rem;
 }
 
-.empty-message button {
+.empty-Likemessage button {
   width: 9rem;
   padding: 0.5rem;
   cursor: pointer;
   border-radius: 0.5rem;
-}
-
-.history-clearBtn {
-  position: relative;
-  right: -75rem;
-}
-
-.history-clearBtn button {
-  cursor: pointer;
-  border-radius: 1rem;
-  padding: 0.7rem;
-  border: 0.3px solid #848482;
-  font-weight: 600;
-}
-
-.history-clearBtn button:hover {
-  background-color: #848482;
-}
-
-.history-heading {
-  margin-left: 39rem;
+  margin-left: 8rem;
 }

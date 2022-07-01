@@ -10,9 +10,7 @@ const watchLaterSlice = createSlice({
   reducers: {
     addWatchLater: (state, action) => {
       action.payload = { ...action.payload, watchLaterExists: true };
-      console.log(action.payload);
       state.watchLaterSelected.push(action.payload);
-      console.log([...state.watchLaterSelected]);
     },
     removeWatchLater: (state, action) => {
       state.watchLaterSelected = state.watchLaterSelected.filter(
