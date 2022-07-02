@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { OptionsFilter, AllFilter } from "../../features/explore/exploreSlice";
+import {
+  OptionsFilter,
+  AllFilter,
+  SearchFilter,
+} from "../../features/explore/exploreSlice";
 import {
   addWatchLater,
   removeWatchLater,
@@ -20,7 +24,9 @@ import { AiFillClockCircle } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
+
 import "./Explorepage.css";
+import { useState } from "react";
 
 const Explorepage = () => {
   const exploreSelected = useSelector(
@@ -33,7 +39,15 @@ const Explorepage = () => {
 
   const likeStatusSelected = useSelector((state) => state.statusLike.LikedNums);
 
+  const [enteredInput, setEnteredInput] = useState();
+
   const dispatch = useDispatch();
+
+  const inputChangeHandler = (e) => {
+    // setEnteredInput(e.target.value);
+
+    dispatch(SearchFilter(e.target.value));
+  };
 
   return (
     <div>
@@ -42,6 +56,7 @@ const Explorepage = () => {
           className="search-box"
           type="search"
           placeholder="Search..."
+          onChange={inputChangeHandler}
         ></input>
         <button className="search-btn">
           <BsSearch />
