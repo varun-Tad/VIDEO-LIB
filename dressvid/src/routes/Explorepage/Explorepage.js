@@ -26,7 +26,7 @@ import { AiOutlineDislike } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 
 import "./Explorepage.css";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Explorepage = () => {
   const exploreSelected = useSelector(
@@ -39,15 +39,13 @@ const Explorepage = () => {
 
   const likeStatusSelected = useSelector((state) => state.statusLike.LikedNums);
 
-  const [enteredInput, setEnteredInput] = useState();
-
   const dispatch = useDispatch();
 
   const inputChangeHandler = (e) => {
-    // setEnteredInput(e.target.value);
-
     dispatch(SearchFilter(e.target.value));
   };
+
+  let navigate = useNavigate();
 
   return (
     <div>
@@ -77,7 +75,10 @@ const Explorepage = () => {
         {exploreSelected.map((ele) => (
           <div className="optionCard" key={ele.id}>
             <div
-              onClick={() => dispatch(addHistory(ele))}
+              onClick={() => {
+                dispatch(addHistory(ele));
+                navigate(`/singlepage/${ele.id}`);
+              }}
               className="image-container"
             >
               <img src={ele.img} alt="video banner" />

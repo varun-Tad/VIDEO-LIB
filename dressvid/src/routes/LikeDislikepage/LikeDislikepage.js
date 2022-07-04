@@ -16,6 +16,10 @@ export const LikeDislikepage = () => {
     navigate("/explore");
   };
 
+  const navigateToSinglepageHandler = (id) => {
+    navigate(`/singlepage/${id}`);
+  };
+
   return (
     <div>
       <h1 className="liked-heading">Liked Videos</h1>
@@ -28,7 +32,10 @@ export const LikeDislikepage = () => {
         <main className="main-section">
           {likedSelected.map((ele) => (
             <div className="optionCard" key={ele.id}>
-              <div className="image-container">
+              <div
+                className="image-container"
+                onClick={() => navigateToSinglepageHandler(ele.id)}
+              >
                 <img src={ele.img} alt="video banner" />
               </div>
               <div className="text-container">

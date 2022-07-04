@@ -6,8 +6,9 @@ import Historypage from "./routes/Historypage/Historypage";
 import WatchLaterpage from "./routes/WatchLaterpage/WatchLaterpage";
 import Homepage from "./routes/Homepage/Homepage";
 import { NoMatch } from "./routes/NoMatch";
-import "./App.css";
 import { LikeDislikepage } from "./routes/LikeDislikepage/LikeDislikepage";
+import "./App.css";
+import { Singlepage } from "./routes/Singlepage/Singlepage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/watchLater" element={<WatchLaterpage />} />
         <Route path="/history" element={<Historypage />} />
         <Route path="/likedVideos" element={<LikeDislikepage />} />
+        <Route path="/singlepage/:pageid" element={<Singlepage />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>
