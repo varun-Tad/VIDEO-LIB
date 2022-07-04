@@ -17,6 +17,10 @@ const Historypage = () => {
     navigate("/explore");
   };
 
+  const navigateToSinglepageHandler = (id) => {
+    navigate(`/singlepage/${id}`);
+  };
+
   return (
     <div>
       <h1 className="history-heading">History</h1>
@@ -33,7 +37,10 @@ const Historypage = () => {
           <main className="main-section">
             {historySelected.map((ele) => (
               <div className="optionCard" key={ele.id}>
-                <div className="image-container">
+                <div
+                  className="image-container"
+                  onClick={() => navigateToSinglepageHandler(ele.id)}
+                >
                   <img src={ele.img} alt="video banner" />
                 </div>
                 <div className="text-container">
