@@ -19,6 +19,10 @@
   transform: scale(1.2);
 }
 
+.liked-heading {
+  margin-left: 37rem;
+}
+
 .image-container img {
   width: 17.5rem;
   height: 12rem;
@@ -47,23 +51,20 @@
   font-size: 1.5rem;
 }
 
-.empty-message {
+.empty-Likemessage {
   margin-top: 15rem;
   margin-left: 30rem;
 }
 
-.empty-message p {
+.empty-Likemessage p {
   font-size: 2rem;
+  margin-left: 5rem;
 }
 
-.empty-message button {
+.empty-Likemessage button {
   width: 9rem;
   padding: 0.5rem;
   cursor: pointer;
   border-radius: 0.5rem;
   margin-left: 8rem;
-}
-
-.watchLater-heading {
-  margin-left: 37rem;
 }

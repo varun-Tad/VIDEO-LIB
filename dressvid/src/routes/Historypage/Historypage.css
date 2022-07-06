@@ -49,7 +49,6 @@
 
 .empty-message {
   margin-top: 15rem;
-  margin-left: 30rem;
 }
 
 .empty-message p {
@@ -61,9 +60,25 @@
   padding: 0.5rem;
   cursor: pointer;
   border-radius: 0.5rem;
-  margin-left: 8rem;
 }
 
-.watchLater-heading {
-  margin-left: 37rem;
+.history-clearBtn {
+  position: relative;
+  right: -75rem;
+}
+
+.history-clearBtn button {
+  cursor: pointer;
+  border-radius: 1rem;
+  padding: 0.7rem;
+  border: 0.3px solid #848482;
+  font-weight: 600;
+}
+
+.history-clearBtn button:hover {
+  background-color: #848482;
+}
+
+.history-heading {
+  margin-left: 39rem;
 }

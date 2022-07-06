@@ -1,14 +1,13 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AiFillDelete } from "react-icons/ai";
-import { removeWatchLater } from "../../features/watchLater/watchLaterSlice";
-import { removeSetStatus } from "../../features/WlStatus/wlSlice";
 import { useNavigate } from "react-router-dom";
-import "./WatchLaterpage.css";
+import { AiFillDelete } from "react-icons/ai";
+import { removedLiked } from "../../features/LikeDislike/LikeDislikeSlice";
+import { removeLikeSetStatus } from "../../features/LikeStatus/LikeSlice";
+import "./LikeDislikepage.css";
 
-const WatchLaterpage = () => {
-  const watchLaterSelected = useSelector(
-    (state) => state.watchLater.watchLaterSelected
-  );
+export const LikeDislikepage = () => {
+  const likedSelected = useSelector((state) => state.likeDislike.likeSelected);
 
   const dispatch = useDispatch();
   let navigate = useNavigate();
@@ -23,15 +22,15 @@ const WatchLaterpage = () => {
 
   return (
     <div>
-      <h1 className="watchLater-heading">Watch Later</h1>
-      {watchLaterSelected.length === 0 ? (
-        <div className="empty-message">
-          <p>No videos added to watch later</p>
+      <h1 className="liked-heading">Liked Videos</h1>
+      {likedSelected.length === 0 ? (
+        <div className="empty-Likemessage">
+          <p>No videos Liked</p>
           <button onClick={navigateToExplore}>Explore</button>
         </div>
       ) : (
         <main className="main-section">
-          {watchLaterSelected.map((ele) => (
+          {likedSelected.map((ele) => (
             <div className="optionCard" key={ele.id}>
               <div
                 className="image-container"
@@ -44,11 +43,11 @@ const WatchLaterpage = () => {
                 <div className="card-footer">
                   <small className="channel-name">by {ele.channelName}</small>
                   <AiFillDelete
-                    title="remove from watch later"
                     className="deleteCard"
+                    title="Unlike video"
                     onClick={() => {
-                      dispatch(removeSetStatus(ele.id));
-                      dispatch(removeWatchLater(ele));
+                      dispatch(removeLikeSetStatus(ele.id));
+                      dispatch(removedLiked(ele));
                     }}
                   />
                 </div>
@@ -60,5 +59,3 @@ const WatchLaterpage = () => {
     </div>
   );
 };
-
-export default WatchLaterpage;

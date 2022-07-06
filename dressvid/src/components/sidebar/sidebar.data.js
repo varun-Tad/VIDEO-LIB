@@ -26,7 +26,7 @@ export const SidebarData = [
   },
   {
     title: "Liked Videos",
-    path: "/likedVidoes",
+    path: "/likedVideos",
     icon: <AiFillHeart />,
     cName: "sideBar-text",
   },
