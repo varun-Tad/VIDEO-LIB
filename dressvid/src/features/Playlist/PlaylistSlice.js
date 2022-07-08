@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   fullPlaylist: [],
@@ -20,10 +20,6 @@ const playlistSlice = createSlice({
       }
     },
     AddtoPlaylist: (state, action) => {
-      console.log("selected Video", action.payload.selectedVd);
-      console.log("playlist Name", action.payload.item);
-      console.log("playlists", [...state.fullPlaylist]);
-
       if (state[action.payload.item] && state[action.payload.item].length > 0) {
         if (
           state[action.payload.item].find(
@@ -34,16 +30,11 @@ const playlistSlice = createSlice({
         } else {
           state[action.payload.item].push(action.payload.selectedVd);
           state.addedVideos.push(action.payload.selectedVd);
-          console.log(state[action.payload.item]);
-          console.log(current(state));
-          console.log("added Vidoes", current(state));
         }
       } else {
         // state[action.payload.item] = [];
         state[action.payload.item].push(action.payload.selectedVd);
         state.addedVideos.push(action.payload.selectedVd);
-        console.log(state[action.payload.item]);
-        console.log(current(state));
       }
     },
     DeleteaPlaylist: (state, action) => {
@@ -55,7 +46,6 @@ const playlistSlice = createSlice({
         state.addedVideos = state.addedVideos.filter(
           (item) => item.id !== val.id
         );
-        console.log(current(state));
       }
 
       delete state[action.payload];
@@ -67,8 +57,6 @@ const playlistSlice = createSlice({
       state.addedVideos = state.addedVideos.filter(
         (item) => item.id !== action.payload.ele.id
       );
-      console.log(action);
-      console.log(current(state));
     },
   },
 });

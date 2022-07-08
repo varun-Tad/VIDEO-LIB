@@ -29,8 +29,6 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { AiFillClockCircle } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
-import { BsSearch } from "react-icons/bs";
-import { TbPlaylistX } from "react-icons/tb";
 
 import "./Explorepage.css";
 import { useNavigate } from "react-router-dom";
@@ -48,7 +46,7 @@ const Explorepage = () => {
 
   const fullPlaylist = useSelector((state) => state.playListmgmt.fullPlaylist);
 
-  const addedVideos = useSelector((state) => state.playListmgmt.addedVideos);
+  // const addedVideos = useSelector((state) => state.playListmgmt.addedVideos);
 
   const dispatch = useDispatch();
 
@@ -131,9 +129,6 @@ const Explorepage = () => {
           placeholder="Search..."
           onChange={inputChangeHandler}
         ></input>
-        <button className="search-btn">
-          <BsSearch />
-        </button>
       </div>
       <div className="options">
         <button onClick={() => dispatch(AllFilter())}>All</button>
