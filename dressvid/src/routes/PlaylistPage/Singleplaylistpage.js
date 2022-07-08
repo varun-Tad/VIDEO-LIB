@@ -1,44 +1,38 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
-import { removeWatchLater } from "../../features/watchLater/watchLaterSlice";
-import { removeSetStatus } from "../../features/WlStatus/wlSlice";
+import { DeleteAVideoFromPlay } from "../../features/Playlist/PlaylistSlice";
 import { addHistory } from "../../features/history/historySlice";
-import { useNavigate } from "react-router-dom";
-import "./WatchLaterpage.css";
+import "./Singleplaylistpage.css";
 
-const WatchLaterpage = () => {
-  const watchLaterSelected = useSelector(
-    (state) => state.watchLater.watchLaterSelected
-  );
-
+export const Singleplaylistpage = () => {
+  const { playid } = useParams();
   const dispatch = useDispatch();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const playListPicked = useSelector((state) => state.playListmgmt[playid]);
 
   const navigateToExplore = () => {
     navigate("/explore");
   };
 
-  const navigateToSinglepageHandler = (id) => {
-    navigate(`/singlepage/${id}`);
-  };
-
   return (
     <div>
-      <h1 className="watchLater-heading">Watch Later</h1>
-      {watchLaterSelected.length === 0 ? (
+      <h1 className="playlist-heading">{playid}</h1>
+      {playListPicked.length === 0 ? (
         <div className="empty-message">
-          <p>No videos added to watch later</p>
+          <p>No videos added to selected playlist</p>
           <button onClick={navigateToExplore}>Explore</button>
         </div>
       ) : (
         <main className="main-section">
-          {watchLaterSelected.map((ele) => (
+          {playListPicked.map((ele) => (
             <div className="optionCard" key={ele.id}>
               <div
                 className="image-container"
                 onClick={() => {
+                  navigate(`/singlepage/${ele.id}`);
                   dispatch(addHistory(ele));
-                  navigateToSinglepageHandler(ele.id);
                 }}
               >
                 <img src={ele.img} alt="video banner" />
@@ -48,12 +42,11 @@ const WatchLaterpage = () => {
                 <div className="card-footer">
                   <small className="channel-name">by {ele.channelName}</small>
                   <AiFillDelete
-                    title="remove from watch later"
-                    className="deleteCard"
-                    onClick={() => {
-                      dispatch(removeSetStatus(ele.id));
-                      dispatch(removeWatchLater(ele));
-                    }}
+                    title="Delete video from playlist"
+                    className="deletePlaylist"
+                    onClick={() =>
+                      dispatch(DeleteAVideoFromPlay({ ele, playid }))
+                    }
                   />
                 </div>
               </div>
@@ -64,5 +57,3 @@ const WatchLaterpage = () => {
     </div>
   );
 };
-
-export default WatchLaterpage;
