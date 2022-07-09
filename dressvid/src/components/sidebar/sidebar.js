@@ -4,16 +4,22 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { BsDisplay } from "react-icons/bs";
 import { FaRegUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SidebarData } from "./sidebar.data";
 import "./sidebar.css";
 
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
-
+  const navigate = useNavigate();
   const toggleSideBar = () => {
     setSidebar(!sidebar);
   };
+
+  const signInNavigate = () => {
+    console.log("yes");
+    navigate("/signIn");
+  };
+
   return (
     <>
       <div className="navbar">
@@ -28,7 +34,7 @@ const Sidebar = () => {
         </div>
 
         <div className="signIn-btn-container">
-          <button className="signIn-btn">
+          <button className="signIn-btn" onClick={signInNavigate}>
             <FaRegUserCircle /> Sign In
           </button>
         </div>
