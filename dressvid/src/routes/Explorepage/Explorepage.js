@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { X } from "phosphor-react";
 import {
   OptionsFilter,
   AllFilter,
@@ -18,26 +19,34 @@ import {
   setLikeStatus,
   removeLikeSetStatus,
 } from "../../features/LikeStatus/LikeSlice";
+import {
+  createPlaylist,
+  AddtoPlaylist,
+  DeleteaPlaylist,
+} from "../../features/Playlist/PlaylistSlice";
 import { MdPlaylistPlay } from "react-icons/md";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { AiFillClockCircle } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
-import { BsSearch } from "react-icons/bs";
 
 import "./Explorepage.css";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Explorepage = () => {
-  const exploreSelected = useSelector(
-    (state) => state.explore.selectedExploreOptions
-  );
+  const word = "selectedExploreOptions";
+  const exploreSelected = useSelector((state) => state.explore[word]);
 
   const watchStatusSelected = useSelector(
     (state) => state.statusLater.watchedLaterNums
   );
 
   const likeStatusSelected = useSelector((state) => state.statusLike.LikedNums);
+
+  const fullPlaylist = useSelector((state) => state.playListmgmt.fullPlaylist);
+
+  // const addedVideos = useSelector((state) => state.playListmgmt.addedVideos);
 
   const dispatch = useDispatch();
 
@@ -47,8 +56,72 @@ const Explorepage = () => {
 
   let navigate = useNavigate();
 
+  const [modalAppear, setModalAppear] = useState(false);
+  const [enteredPlaylistName, setEnteredPlaylistName] = useState("");
+  const [sameEnteredPlaylistName, setSameEnteredPlaylistName] = useState("");
+  const [selectedVd, setSelectedVd] = useState();
+
+  const modalHandler = () => {
+    setModalAppear(!modalAppear);
+  };
+
+  const playlistNameInputHandler = (e) => {
+    setEnteredPlaylistName(e.target.value);
+    setSameEnteredPlaylistName(e.target.value);
+  };
+
+  const addToplayListArr = () => {
+    dispatch(createPlaylist(enteredPlaylistName));
+    setEnteredPlaylistName("");
+    console.log("sameEnteredPlaylistName", sameEnteredPlaylistName);
+  };
+
   return (
     <div>
+      {modalAppear && <div className="backdrop"></div>}
+      {modalAppear && (
+        <div className="playlist-modal">
+          <h3 className="playlist-modalTitle">My Playlists</h3>
+          <X onClick={modalHandler} className="close-modal" size={24} />
+          <div>
+            {fullPlaylist.map((item) => (
+              <div key={item} className="playlist-item">
+                <div className="playlist-name">{item}</div>
+                <div className="playListItem-btns">
+                  <button
+                    onClick={() => {
+                      console.log("item", item);
+                      dispatch(AddtoPlaylist({ selectedVd, item }));
+                    }}
+                    className="addToPlaylist-btn"
+                  >
+                    Add to playlist
+                  </button>
+                  <button
+                    className="addToPlaylist-btn"
+                    onClick={() => dispatch(DeleteaPlaylist(item))}
+                  >
+                    Delete playlist
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="addPlaylist-container">
+            <input
+              value={enteredPlaylistName}
+              type="text"
+              onChange={playlistNameInputHandler}
+              className="createPlaylist-input"
+              placeholder="Enter new playlist..."
+            />
+            <button className="createPlaylist-btn" onClick={addToplayListArr}>
+              Create Playlist
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="inputText-container">
         <input
           className="search-box"
@@ -56,9 +129,6 @@ const Explorepage = () => {
           placeholder="Search..."
           onChange={inputChangeHandler}
         ></input>
-        <button className="search-btn">
-          <BsSearch />
-        </button>
       </div>
       <div className="options">
         <button onClick={() => dispatch(AllFilter())}>All</button>
@@ -87,10 +157,20 @@ const Explorepage = () => {
               <h3>{ele.name}</h3>
               <small className="channel-name">by {ele.channelName}</small>
               <div className="small-btns">
+                {/* {addedVideos.some((everyEle) => everyEle.id === ele.id) ? (
+                  <button title="Remove from playlist">
+                    <TbPlaylistX />
+                  </button>
+                ) : ( */}
                 <button title="Add to playlist">
-                  <MdPlaylistPlay />
+                  <MdPlaylistPlay
+                    onClick={() => {
+                      modalHandler();
+                      setSelectedVd(ele);
+                    }}
+                  />
                 </button>
-
+                {/* )} */}
                 {likeStatusSelected.some((everyNum) => everyNum === ele.id) ? (
                   <button
                     title="Unlike video"
@@ -112,7 +192,6 @@ const Explorepage = () => {
                     <AiOutlineLike />
                   </button>
                 )}
-
                 {watchStatusSelected.some((everyNum) => everyNum === ele.id) ? (
                   <button
                     onClick={() => {

@@ -33,7 +33,10 @@ const Historypage = () => {
           <main className="main-section">
             {historySelected.map((ele) => (
               <div className="optionCard" key={ele.id}>
-                <div className="image-container">
+                <div
+                  className="image-container"
+                  onClick={() => navigate(`/singlepage/${ele.id}`)}
+                >
                   <img src={ele.img} alt="video banner" />
                 </div>
                 <div className="text-container">

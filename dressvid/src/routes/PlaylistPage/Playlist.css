@@ -1,0 +1,26 @@
+.playlist-newBtn {
+  cursor: pointer;
+  border-radius: 1rem;
+  padding: 0.7rem;
+  border: 0.3px solid #848482;
+  font-weight: 600;
+  position: relative;
+  left: 75rem;
+}
+
+.playlist-newBtn:hover {
+  background-color: #848482;
+}
+
+.playList-title {
+  font-size: 5rem;
+}
+
+.deletePlaylist {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.playlist-heading {
+  text-align: center;
+}

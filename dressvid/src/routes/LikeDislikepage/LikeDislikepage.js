@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
 import { removedLiked } from "../../features/LikeDislike/LikeDislikeSlice";
 import { removeLikeSetStatus } from "../../features/LikeStatus/LikeSlice";
+import { addHistory } from "../../features/history/historySlice";
 import "./LikeDislikepage.css";
 
 export const LikeDislikepage = () => {
@@ -34,7 +35,10 @@ export const LikeDislikepage = () => {
             <div className="optionCard" key={ele.id}>
               <div
                 className="image-container"
-                onClick={() => navigateToSinglepageHandler(ele.id)}
+                onClick={() => {
+                  navigateToSinglepageHandler(ele.id);
+                  dispatch(addHistory(ele));
+                }}
               >
                 <img src={ele.img} alt="video banner" />
               </div>

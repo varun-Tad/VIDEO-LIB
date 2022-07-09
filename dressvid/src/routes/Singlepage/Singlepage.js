@@ -5,6 +5,12 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { AiFillClockCircle } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
+import { X } from "phosphor-react";
+import { useState } from "react";
+import {
+  createPlaylist,
+  AddtoPlaylist,
+} from "../../features/Playlist/PlaylistSlice";
 import {
   addWatchLater,
   removeWatchLater,
@@ -18,6 +24,7 @@ import {
   setLikeStatus,
   removeLikeSetStatus,
 } from "../../features/LikeStatus/LikeSlice";
+import { DeleteaPlaylist } from "../../features/Playlist/PlaylistSlice";
 import "./Singlepage.css";
 
 export const Singlepage = () => {
@@ -41,9 +48,73 @@ export const Singlepage = () => {
 
   const selected = getSelectedOption(exploreSelected, pageid);
 
+  const [modalAppear, setModalAppear] = useState(false);
+  const [enteredPlaylistName, setEnteredPlaylistName] = useState("");
+  const [sameEnteredPlaylistName, setSameEnteredPlaylistName] = useState("");
+  const [selectedVd, setSelectedVd] = useState();
+  const modalHandler = () => {
+    setModalAppear(!modalAppear);
+  };
+
+  const playlistNameInputHandler = (e) => {
+    setEnteredPlaylistName(e.target.value);
+    setSameEnteredPlaylistName(e.target.value);
+  };
+
+  const addToplayListArr = () => {
+    dispatch(createPlaylist(enteredPlaylistName));
+    setEnteredPlaylistName("");
+    console.log("sameEnteredPlaylistName", sameEnteredPlaylistName);
+  };
+
+  const fullPlaylist = useSelector((state) => state.playListmgmt.fullPlaylist);
+
   return (
     <>
       <main className="video-singlePage">
+        {modalAppear && <div className="backdrop"></div>}
+        {modalAppear && (
+          <div className="playlist-modal">
+            <h3 className="playlist-modalTitle">My Playlist</h3>
+            <X onClick={modalHandler} className="close-modal" size={24} />
+            <div>
+              {fullPlaylist.map((item) => (
+                <div key={item} className="playlist-item">
+                  <div className="playlist-name">{item}</div>
+                  <div className="playListItem-btns">
+                    <button
+                      className="addToPlaylist-btn"
+                      onClick={() => {
+                        console.log("item", item);
+                        dispatch(AddtoPlaylist({ selectedVd, item }));
+                      }}
+                    >
+                      Add to playlist
+                    </button>
+                    <button
+                      className="addToPlaylist-btn"
+                      onClick={() => dispatch(DeleteaPlaylist(item))}
+                    >
+                      Delete playlist
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="addPlaylist-container">
+              <input
+                value={enteredPlaylistName}
+                type="text"
+                onChange={playlistNameInputHandler}
+                className="createPlaylist-input"
+                placeholder="Enter new playlist..."
+              />
+              <button className="createPlaylist-btn" onClick={addToplayListArr}>
+                Create Playlist
+              </button>
+            </div>
+          </div>
+        )}
         <div className="video">
           <iframe
             className="video-frame"
@@ -51,9 +122,9 @@ export const Singlepage = () => {
             height="315"
             src={selected.url}
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </div>
         <h1 className="video-name">{selected.name}</h1>
@@ -113,7 +184,12 @@ export const Singlepage = () => {
               </button>
             )}
             <button className="btn">
-              <MdPlaylistPlay />
+              <MdPlaylistPlay
+                onClick={() => {
+                  modalHandler();
+                  setSelectedVd(selected);
+                }}
+              />
             </button>
           </div>
         </div>

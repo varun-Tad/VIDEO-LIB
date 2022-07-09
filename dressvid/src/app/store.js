@@ -5,6 +5,7 @@ import statusReducer from "../features/WlStatus/wlSlice";
 import historyReducer from "../features/history/historySlice";
 import likeDislikeReducer from "../features/LikeDislike/LikeDislikeSlice";
 import statusLikeReducer from "../features/LikeStatus/LikeSlice";
+import playlistReducer from "../features/Playlist/PlaylistSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     history: historyReducer,
     likeDislike: likeDislikeReducer,
     statusLike: statusLikeReducer,
+    playListmgmt: playlistReducer,
   },
 });
