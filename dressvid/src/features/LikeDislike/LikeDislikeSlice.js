@@ -1,13 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useEffect } from "react";
 
 const initialState = {
   likeSelected: [],
 };
-
-useEffect(() => {
-  console.log("yes");
-});
 
 const LikeDislikeSlice = createSlice({
   name: "liked",
