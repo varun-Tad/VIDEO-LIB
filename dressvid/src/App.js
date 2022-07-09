@@ -12,6 +12,7 @@ import Playlistpage from "./routes/PlaylistPage/Playlistpage";
 import { Singleplaylistpage } from "./routes/PlaylistPage/Singleplaylistpage";
 import "./App.css";
 import SignInpage from "./routes/SignInPage/SignInpage";
+import SignUppage from "./routes/SignUpPage/SignUppage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/playlist/:playid" element={<Singleplaylistpage />} />
         <Route path="/playlist" element={<Playlistpage />} />
         <Route path="/signIn" element={<SignInpage />} />
+        <Route path="/signup" element={<SignUppage />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>

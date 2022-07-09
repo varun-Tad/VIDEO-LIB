@@ -77,7 +77,7 @@ const Explorepage = () => {
   };
 
   return (
-    <div>
+    <div className="explore-page">
       {modalAppear && <div className="backdrop"></div>}
       {modalAppear && (
         <div className="playlist-modal">

@@ -4,7 +4,7 @@ import "./SignInpage.css";
 
 const SignInpage = () => {
   return (
-    <div>
+    <div className="signIn-page">
       <form className="login-form">
         <h3 className="loginh2">Login</h3>
         <div className="googleLogin">
@@ -41,7 +41,7 @@ const SignInpage = () => {
         </button>
         <p className="signUp-para">
           Don't have an account?{" "}
-          <Link className="linkToSignUp" to="/Signup">
+          <Link className="linkToSignUp" to="/signup">
             Sign up
           </Link>
         </p>
