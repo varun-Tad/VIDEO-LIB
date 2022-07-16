@@ -31,8 +31,8 @@ import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "./Explorepage.css";
 import { toast } from "react-toastify";
+import "./Explorepage.css";
 
 const Explorepage = () => {
   const word = "selectedExploreOptions";
