@@ -29,6 +29,7 @@ import "./Singlepage.css";
 
 export const Singlepage = () => {
   const { pageid } = useParams();
+  const dispatch = useDispatch();
   const exploreSelected = useSelector(
     (state) => state.explore.selectedExploreOptions
   );
@@ -39,19 +40,17 @@ export const Singlepage = () => {
 
   const likeStatusSelected = useSelector((state) => state.statusLike.LikedNums);
 
-  const dispatch = useDispatch();
-
   const getSelectedOption = (exploreSelected, pageid) => {
     const selected = exploreSelected.find((ele) => ele.id === Number(pageid));
     return selected;
   };
 
   const selected = getSelectedOption(exploreSelected, pageid);
-
   const [modalAppear, setModalAppear] = useState(false);
   const [enteredPlaylistName, setEnteredPlaylistName] = useState("");
   const [sameEnteredPlaylistName, setSameEnteredPlaylistName] = useState("");
   const [selectedVd, setSelectedVd] = useState();
+  const [subscribeState, setSubscribeState] = useState(false);
   const modalHandler = () => {
     setModalAppear(!modalAppear);
   };
@@ -64,6 +63,10 @@ export const Singlepage = () => {
   const addToplayListArr = () => {
     dispatch(createPlaylist(enteredPlaylistName));
     setEnteredPlaylistName("");
+  };
+
+  const subscribeHandler = () => {
+    setSubscribeState(!subscribeState);
   };
 
   const fullPlaylist = useSelector((state) => state.playListmgmt.fullPlaylist);
@@ -205,7 +208,9 @@ export const Singlepage = () => {
               </div>
             </div>
           </div>
-          <button className="sub-btn">Subscribe</button>
+          <button className="sub-btn" onClick={subscribeHandler}>
+            {subscribeState ? "Unubscribe" : "Subscribe"}
+          </button>
         </div>
       </main>
     </>

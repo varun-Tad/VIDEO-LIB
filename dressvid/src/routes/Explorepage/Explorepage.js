@@ -32,6 +32,7 @@ import { AiOutlineDislike } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./Explorepage.css";
+import { toast } from "react-toastify";
 
 const Explorepage = () => {
   const word = "selectedExploreOptions";
@@ -81,6 +82,9 @@ const Explorepage = () => {
                   <button
                     onClick={() => {
                       dispatch(AddtoPlaylist({ selectedVd, item }));
+                      toast.success("Video added to playlist !", {
+                        autoClose: 3000,
+                      });
                     }}
                     className="addToPlaylist-btn"
                   >
@@ -88,7 +92,12 @@ const Explorepage = () => {
                   </button>
                   <button
                     className="addToPlaylist-btn"
-                    onClick={() => dispatch(DeleteaPlaylist(item))}
+                    onClick={() => {
+                      dispatch(DeleteaPlaylist(item));
+                      toast.success("Playlist deleted !", {
+                        autoClose: 3000,
+                      });
+                    }}
                   >
                     Delete playlist
                   </button>
@@ -161,6 +170,9 @@ const Explorepage = () => {
                     onClick={() => {
                       dispatch(removeLikeSetStatus(ele.id));
                       dispatch(removedLiked(ele));
+                      toast.success("Video Unliked !", {
+                        autoClose: 3000,
+                      });
                     }}
                   >
                     <AiOutlineDislike />
@@ -171,6 +183,9 @@ const Explorepage = () => {
                     onClick={() => {
                       dispatch(setLikeStatus(ele.id));
                       dispatch(addLiked(ele));
+                      toast.success("Video Liked !", {
+                        autoClose: 3000,
+                      });
                     }}
                   >
                     <AiOutlineLike />
@@ -181,6 +196,9 @@ const Explorepage = () => {
                     onClick={() => {
                       dispatch(removeSetStatus(ele.id));
                       dispatch(removeWatchLater(ele));
+                      toast.success("Video removed from watch later!", {
+                        autoClose: 3000,
+                      });
                     }}
                     title="Remove from watch later"
                   >
@@ -191,6 +209,9 @@ const Explorepage = () => {
                     onClick={() => {
                       dispatch(setStatus(ele.id));
                       dispatch(addWatchLater(ele));
+                      toast.success("Video added to watch later !", {
+                        autoClose: 3000,
+                      });
                     }}
                     title="Watch later"
                   >

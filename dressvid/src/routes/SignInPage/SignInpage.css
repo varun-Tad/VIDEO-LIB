@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--light-grey);
+  border: 2px solid var(--color-black);
   width: 80%;
   padding: 0.5rem;
   border-radius: 0.8rem;
@@ -41,7 +41,7 @@
 
 .form-smallText {
   margin-left: 3.5rem;
-  color: var(--light-grey);
+  color: var(--color-black);
 }
 
 .form-smallText:after {

@@ -32,7 +32,7 @@ const SignInpage = () => {
         autoClose: 3000,
       });
       dispatch(changeUserStatus());
-      navigate(-1);
+      navigate("/");
     } catch (err) {
       toast.error("Login unsuccessful!Try again", {
         autoClose: 3000,
@@ -50,7 +50,7 @@ const SignInpage = () => {
       );
       resetFormFields();
       dispatch(changeUserStatus());
-      navigate(-1);
+      navigate("/");
       toast.success("Login successful !", {
         autoClose: 3000,
       });
