@@ -29,31 +29,22 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { AiFillClockCircle } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
-
-import "./Explorepage.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "./Explorepage.css";
 
 const Explorepage = () => {
   const word = "selectedExploreOptions";
   const exploreSelected = useSelector((state) => state.explore[word]);
-
   const watchStatusSelected = useSelector(
     (state) => state.statusLater.watchedLaterNums
   );
-
   const likeStatusSelected = useSelector((state) => state.statusLike.LikedNums);
-
   const fullPlaylist = useSelector((state) => state.playListmgmt.fullPlaylist);
-
-  // const addedVideos = useSelector((state) => state.playListmgmt.addedVideos);
-
   const dispatch = useDispatch();
-
   const inputChangeHandler = (e) => {
     dispatch(SearchFilter(e.target.value));
   };
-
   let navigate = useNavigate();
 
   const [modalAppear, setModalAppear] = useState(false);
@@ -73,7 +64,6 @@ const Explorepage = () => {
   const addToplayListArr = () => {
     dispatch(createPlaylist(enteredPlaylistName));
     setEnteredPlaylistName("");
-    console.log("sameEnteredPlaylistName", sameEnteredPlaylistName);
   };
 
   return (
@@ -90,7 +80,6 @@ const Explorepage = () => {
                 <div className="playListItem-btns">
                   <button
                     onClick={() => {
-                      console.log("item", item);
                       dispatch(AddtoPlaylist({ selectedVd, item }));
                     }}
                     className="addToPlaylist-btn"
@@ -157,11 +146,6 @@ const Explorepage = () => {
               <h3>{ele.name}</h3>
               <small className="channel-name">by {ele.channelName}</small>
               <div className="small-btns">
-                {/* {addedVideos.some((everyEle) => everyEle.id === ele.id) ? (
-                  <button title="Remove from playlist">
-                    <TbPlaylistX />
-                  </button>
-                ) : ( */}
                 <button title="Add to playlist">
                   <MdPlaylistPlay
                     onClick={() => {
@@ -170,7 +154,7 @@ const Explorepage = () => {
                     }}
                   />
                 </button>
-                {/* )} */}
+
                 {likeStatusSelected.some((everyNum) => everyNum === ele.id) ? (
                   <button
                     title="Unlike video"

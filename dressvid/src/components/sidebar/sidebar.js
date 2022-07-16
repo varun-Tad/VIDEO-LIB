@@ -7,9 +7,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { SidebarData } from "./sidebar.data";
 import { useDispatch, useSelector } from "react-redux";
 import { signOutUser } from "../../utils/firebase.utils";
+import { changeUserStatus } from "../../features/Auth/AuthSlice";
 import { toast } from "react-toastify";
 import "./sidebar.css";
-import { changeUserStatus } from "../../features/Auth/AuthSlice";
 
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);

@@ -32,7 +32,6 @@ const playlistSlice = createSlice({
           state.addedVideos.push(action.payload.selectedVd);
         }
       } else {
-        // state[action.payload.item] = [];
         state[action.payload.item].push(action.payload.selectedVd);
         state.addedVideos.push(action.payload.selectedVd);
       }

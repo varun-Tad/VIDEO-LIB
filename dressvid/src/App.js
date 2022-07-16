@@ -10,9 +10,9 @@ import { LikeDislikepage } from "./routes/LikeDislikepage/LikeDislikepage";
 import { Singlepage } from "./routes/Singlepage/Singlepage";
 import Playlistpage from "./routes/PlaylistPage/Playlistpage";
 import { Singleplaylistpage } from "./routes/PlaylistPage/Singleplaylistpage";
-import "./App.css";
 import SignInpage from "./routes/SignInPage/SignInpage";
 import SignUppage from "./routes/SignUpPage/SignUppage";
+import "./App.css";
 
 function App() {
   return (

@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC8YBhEvsRlVr4mR_sLtZrdQVUSARkkxjQ",
@@ -57,7 +58,9 @@ export const createUserDocumentFromAuth = async (
         ...additionalInformation,
       });
     } catch (err) {
-      console.log("error creating the user", err);
+      toast.error("error creating the user", {
+        autoClose: 3000,
+      });
     }
   }
   return userDocRef;
@@ -80,6 +83,5 @@ export const signOutUser = async () => {
 };
 
 export const onAuthStateChangedListener = (callback) => {
-  console.log("called");
   onAuthStateChanged(auth, callback);
 };

@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-  onAuthStateChangedListener,
 } from "../../utils/firebase.utils";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./SignInpage.css";
-
-import { useDispatch, useSelector } from "react-redux";
 import { changeUserStatus } from "../../features/Auth/AuthSlice";
+import { useDispatch } from "react-redux";
+import "./SignInpage.css";
 
 const defaultFormFields = {
   email: "",
@@ -21,9 +18,7 @@ const defaultFormFields = {
 const SignInpage = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-
   let dispatch = useDispatch();
-
   let navigate = useNavigate();
 
   const resetFormFields = () => {
@@ -39,7 +34,9 @@ const SignInpage = () => {
       dispatch(changeUserStatus());
       navigate(-1);
     } catch (err) {
-      console.log(err);
+      toast.error("Login unsuccessful!Try again", {
+        autoClose: 3000,
+      });
     }
   };
 
@@ -52,7 +49,6 @@ const SignInpage = () => {
         password
       );
       resetFormFields();
-
       dispatch(changeUserStatus());
       navigate(-1);
       toast.success("Login successful !", {
@@ -61,7 +57,6 @@ const SignInpage = () => {
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":
-          console.log("incorrect pwd");
           toast.error("incorrect password for email", {
             autoClose: 3000,
           });
@@ -72,14 +67,15 @@ const SignInpage = () => {
           });
           break;
         default:
-          console.log(error);
+          toast.error("error.Try again", {
+            autoClose: 3000,
+          });
       }
     }
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setFormFields({ ...formFields, [name]: value });
   };
 

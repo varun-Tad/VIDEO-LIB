@@ -26,7 +26,6 @@ const Playlistpage = () => {
   const addToplayListArr = () => {
     dispatch(createPlaylist(enteredPlaylistName));
     setEnteredPlaylistName("");
-    console.log("sameEnteredPlaylistName", sameEnteredPlaylistName);
   };
   const [modalAppear, setModalAppear] = useState(false);
   const [selectedVd, setSelectedVd] = useState();

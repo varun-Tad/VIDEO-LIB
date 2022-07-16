@@ -55,7 +55,9 @@ const SignUppage = () => {
           autoClose: 3000,
         });
       } else {
-        console.error("user creation encountered an error", error);
+        toast.error("user creation encountered an error", {
+          autoClose: 3000,
+        });
       }
     }
   };

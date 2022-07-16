@@ -2,14 +2,14 @@
   cursor: pointer;
   border-radius: 1rem;
   padding: 0.7rem;
-  border: 0.3px solid #848482;
+  border: 0.3px solid var(--dark-grey);
   font-weight: 600;
   position: relative;
   left: 75rem;
 }
 
 .playlist-newBtn:hover {
-  background-color: #848482;
+  background-color: var(--dark-grey);
 }
 
 .playList-title {

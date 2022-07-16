@@ -64,7 +64,6 @@ export const Singlepage = () => {
   const addToplayListArr = () => {
     dispatch(createPlaylist(enteredPlaylistName));
     setEnteredPlaylistName("");
-    console.log("sameEnteredPlaylistName", sameEnteredPlaylistName);
   };
 
   const fullPlaylist = useSelector((state) => state.playListmgmt.fullPlaylist);
@@ -85,7 +84,6 @@ export const Singlepage = () => {
                     <button
                       className="addToPlaylist-btn"
                       onClick={() => {
-                        console.log("item", item);
                         dispatch(AddtoPlaylist({ selectedVd, item }));
                       }}
                     >

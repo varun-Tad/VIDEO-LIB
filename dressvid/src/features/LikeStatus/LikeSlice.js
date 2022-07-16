@@ -12,7 +12,6 @@ const LikeSlice = createSlice({
       state.LikedNums.push(action.payload);
     },
     removeLikeSetStatus: (state, action) => {
-      console.log("action.paylaod", action.payload);
       state.LikedNums = state.LikedNums.filter((num) => num !== action.payload);
     },
   },
