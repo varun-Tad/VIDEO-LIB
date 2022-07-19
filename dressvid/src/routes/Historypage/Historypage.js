@@ -5,12 +5,11 @@ import {
   removeHistory,
   clearHistory,
 } from "../../features/history/historySlice";
-
 import "./Historypage.css";
 
 const Historypage = () => {
-  const dispatch = useDispatch();
   const historySelected = useSelector((state) => state.history.historySelected);
+  const dispatch = useDispatch();
   let navigate = useNavigate();
 
   const navigateToExplore = () => {
@@ -18,7 +17,7 @@ const Historypage = () => {
   };
 
   return (
-    <div>
+    <>
       <h1 className="history-heading">History</h1>
       {historySelected.length === 0 ? (
         <div className="empty-message">
@@ -55,7 +54,7 @@ const Historypage = () => {
           </main>
         </>
       )}
-    </div>
+    </>
   );
 };
 

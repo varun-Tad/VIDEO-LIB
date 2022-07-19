@@ -13,7 +13,7 @@ img {
   bottom: 20rem;
   left: 30rem;
   font-size: 50px;
-  color: white;
+  color: var(--color-white);
 }
 .categories {
   display: flex;
@@ -29,7 +29,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 5px solid black;
+  border: 5px solid var(--color-black);
   margin: 0 7.5px 15px;
   overflow: hidden;
   background-position: center;
@@ -42,7 +42,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 5px solid black;
+  border: 5px solid var(--color-black);
   margin: 0 7.5px 15px;
   overflow: hidden;
 }
@@ -54,7 +54,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 5px solid black;
+  border: 5px solid var(--color-black);
   margin: 0 7.5px 15px;
   overflow: hidden;
 }
@@ -66,13 +66,14 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 5px solid black;
+  border: 5px solid var(--color-black);
   margin: 0 7.5px 15px;
   overflow: hidden;
 }
 
 h2 {
-  background-color: rgba(247, 248, 250, 0.4);
+  background: var(--light-white);
+  opacity: 0.4;
   text-align: center;
   position: relative;
   left: 46rem;

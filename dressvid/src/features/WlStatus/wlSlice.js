@@ -12,7 +12,6 @@ const exploreSlice = createSlice({
       state.watchedLaterNums.push(action.payload);
     },
     removeSetStatus: (state, action) => {
-      console.log("action.paylaod", action.payload);
       state.watchedLaterNums = state.watchedLaterNums.filter(
         (num) => num !== action.payload
       );

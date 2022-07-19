@@ -9,7 +9,6 @@ import "./LikeDislikepage.css";
 
 export const LikeDislikepage = () => {
   const likedSelected = useSelector((state) => state.likeDislike.likeSelected);
-
   const dispatch = useDispatch();
   let navigate = useNavigate();
 

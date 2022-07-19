@@ -10,6 +10,10 @@ import { LikeDislikepage } from "./routes/LikeDislikepage/LikeDislikepage";
 import { Singlepage } from "./routes/Singlepage/Singlepage";
 import Playlistpage from "./routes/PlaylistPage/Playlistpage";
 import { Singleplaylistpage } from "./routes/PlaylistPage/Singleplaylistpage";
+import SignInpage from "./routes/SignInPage/SignInpage";
+import SignUppage from "./routes/SignUpPage/SignUppage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 function App() {
@@ -25,8 +29,11 @@ function App() {
         <Route path="/singlepage/:pageid" element={<Singlepage />} />
         <Route path="/playlist/:playid" element={<Singleplaylistpage />} />
         <Route path="/playlist" element={<Playlistpage />} />
+        <Route path="/signIn" element={<SignInpage />} />
+        <Route path="/signup" element={<SignUppage />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

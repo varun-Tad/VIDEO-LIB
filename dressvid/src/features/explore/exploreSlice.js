@@ -27,8 +27,6 @@ const exploreSlice = createSlice({
           .toLocaleLowerCase()
           .includes(action.payload.toLocaleLowerCase())
       );
-      console.log(action.payload);
-      console.log(state.selectedExploreOptions);
     },
   },
 });

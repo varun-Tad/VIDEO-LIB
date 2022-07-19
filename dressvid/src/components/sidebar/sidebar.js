@@ -1,19 +1,39 @@
 import React, { useState } from "react";
-
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { BsDisplay } from "react-icons/bs";
 import { FaRegUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SidebarData } from "./sidebar.data";
+import { useDispatch, useSelector } from "react-redux";
+import { signOutUser } from "../../utils/firebase.utils";
+import { changeUserStatus } from "../../features/Auth/AuthSlice";
+import { toast } from "react-toastify";
 import "./sidebar.css";
 
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const toggleSideBar = () => {
     setSidebar(!sidebar);
   };
+
+  const signInNavigate = () => {
+    navigate("/signIn");
+  };
+
+  const signOutHandler = async () => {
+    const yes = await signOutUser();
+    dispatch(changeUserStatus());
+    navigate("/");
+    toast.success("Logout successful", {
+      autoClose: 3000,
+    });
+  };
+
+  const userStatus = useSelector((state) => state.authMgmt.userStatus);
+
   return (
     <>
       <div className="navbar">
@@ -28,9 +48,15 @@ const Sidebar = () => {
         </div>
 
         <div className="signIn-btn-container">
-          <button className="signIn-btn">
-            <FaRegUserCircle /> Sign In
-          </button>
+          {userStatus ? (
+            <button className="user-btn signOut-btn" onClick={signOutHandler}>
+              <FaRegUserCircle /> Sign Out
+            </button>
+          ) : (
+            <button className="user-btn signIn-btn" onClick={signInNavigate}>
+              <FaRegUserCircle /> Sign In
+            </button>
+          )}
         </div>
       </div>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
@@ -44,13 +70,20 @@ const Sidebar = () => {
               <AiIcons.AiOutlineClose onClick={toggleSideBar} />
             </Link>
           </li>
-          {SidebarData.map((item, index) => {
+          {SidebarData.map(({ title, path, altpath, icon, cName }, index) => {
             return (
-              <li key={index} className={item.cName}>
-                <Link to={item.path}>
-                  {item.icon}
-                  <span>{item.title}</span>
-                </Link>
+              <li key={index} className={cName}>
+                {userStatus ? (
+                  <Link to={path}>
+                    {icon}
+                    <span>{title}</span>
+                  </Link>
+                ) : (
+                  <Link to={altpath}>
+                    {icon}
+                    <span>{title}</span>
+                  </Link>
+                )}
               </li>
             );
           })}

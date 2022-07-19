@@ -29,31 +29,27 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { AiFillClockCircle } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
-
-import "./Explorepage.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import "./Explorepage.css";
 
 const Explorepage = () => {
   const word = "selectedExploreOptions";
   const exploreSelected = useSelector((state) => state.explore[word]);
-
   const watchStatusSelected = useSelector(
-    (state) => state.statusLater.watchedLaterNums
+    (state) => state?.statusLater?.watchedLaterNums
   );
-
-  const likeStatusSelected = useSelector((state) => state.statusLike.LikedNums);
-
-  const fullPlaylist = useSelector((state) => state.playListmgmt.fullPlaylist);
-
-  // const addedVideos = useSelector((state) => state.playListmgmt.addedVideos);
-
+  const likeStatusSelected = useSelector(
+    (state) => state?.statusLike?.LikedNums
+  );
+  const fullPlaylist = useSelector(
+    (state) => state?.playListmgmt?.fullPlaylist
+  );
   const dispatch = useDispatch();
-
   const inputChangeHandler = (e) => {
     dispatch(SearchFilter(e.target.value));
   };
-
   let navigate = useNavigate();
 
   const [modalAppear, setModalAppear] = useState(false);
@@ -73,11 +69,10 @@ const Explorepage = () => {
   const addToplayListArr = () => {
     dispatch(createPlaylist(enteredPlaylistName));
     setEnteredPlaylistName("");
-    console.log("sameEnteredPlaylistName", sameEnteredPlaylistName);
   };
 
   return (
-    <div>
+    <div className="explore-page">
       {modalAppear && <div className="backdrop"></div>}
       {modalAppear && (
         <div className="playlist-modal">
@@ -90,8 +85,10 @@ const Explorepage = () => {
                 <div className="playListItem-btns">
                   <button
                     onClick={() => {
-                      console.log("item", item);
                       dispatch(AddtoPlaylist({ selectedVd, item }));
+                      toast.success("Video added to playlist !", {
+                        autoClose: 3000,
+                      });
                     }}
                     className="addToPlaylist-btn"
                   >
@@ -99,7 +96,12 @@ const Explorepage = () => {
                   </button>
                   <button
                     className="addToPlaylist-btn"
-                    onClick={() => dispatch(DeleteaPlaylist(item))}
+                    onClick={() => {
+                      dispatch(DeleteaPlaylist(item));
+                      toast.success("Playlist deleted !", {
+                        autoClose: 3000,
+                      });
+                    }}
                   >
                     Delete playlist
                   </button>
@@ -157,11 +159,6 @@ const Explorepage = () => {
               <h3>{ele.name}</h3>
               <small className="channel-name">by {ele.channelName}</small>
               <div className="small-btns">
-                {/* {addedVideos.some((everyEle) => everyEle.id === ele.id) ? (
-                  <button title="Remove from playlist">
-                    <TbPlaylistX />
-                  </button>
-                ) : ( */}
                 <button title="Add to playlist">
                   <MdPlaylistPlay
                     onClick={() => {
@@ -170,13 +167,16 @@ const Explorepage = () => {
                     }}
                   />
                 </button>
-                {/* )} */}
+
                 {likeStatusSelected.some((everyNum) => everyNum === ele.id) ? (
                   <button
                     title="Unlike video"
                     onClick={() => {
                       dispatch(removeLikeSetStatus(ele.id));
                       dispatch(removedLiked(ele));
+                      toast.success("Video Unliked !", {
+                        autoClose: 3000,
+                      });
                     }}
                   >
                     <AiOutlineDislike />
@@ -187,6 +187,9 @@ const Explorepage = () => {
                     onClick={() => {
                       dispatch(setLikeStatus(ele.id));
                       dispatch(addLiked(ele));
+                      toast.success("Video Liked !", {
+                        autoClose: 3000,
+                      });
                     }}
                   >
                     <AiOutlineLike />
@@ -197,6 +200,9 @@ const Explorepage = () => {
                     onClick={() => {
                       dispatch(removeSetStatus(ele.id));
                       dispatch(removeWatchLater(ele));
+                      toast.success("Video removed from watch later!", {
+                        autoClose: 3000,
+                      });
                     }}
                     title="Remove from watch later"
                   >
@@ -207,6 +213,9 @@ const Explorepage = () => {
                     onClick={() => {
                       dispatch(setStatus(ele.id));
                       dispatch(addWatchLater(ele));
+                      toast.success("Video added to watch later !", {
+                        autoClose: 3000,
+                      });
                     }}
                     title="Watch later"
                   >

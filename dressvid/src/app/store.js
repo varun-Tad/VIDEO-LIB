@@ -6,6 +6,7 @@ import historyReducer from "../features/history/historySlice";
 import likeDislikeReducer from "../features/LikeDislike/LikeDislikeSlice";
 import statusLikeReducer from "../features/LikeStatus/LikeSlice";
 import playlistReducer from "../features/Playlist/PlaylistSlice";
+import authReducer from "../features/Auth/AuthSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
     likeDislike: likeDislikeReducer,
     statusLike: statusLikeReducer,
     playListmgmt: playlistReducer,
+    authMgmt: authReducer,
   },
 });
