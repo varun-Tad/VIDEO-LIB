@@ -70,18 +70,18 @@ const Sidebar = () => {
               <AiIcons.AiOutlineClose onClick={toggleSideBar} />
             </Link>
           </li>
-          {SidebarData.map((item, index) => {
+          {SidebarData.map(({ title, path, altpath, icon, cName }, index) => {
             return (
-              <li key={index} className={item.cName}>
+              <li key={index} className={cName}>
                 {userStatus ? (
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
+                  <Link to={path}>
+                    {icon}
+                    <span>{title}</span>
                   </Link>
                 ) : (
-                  <Link to={item.altpath}>
-                    {item.icon}
-                    <span>{item.title}</span>
+                  <Link to={altpath}>
+                    {icon}
+                    <span>{title}</span>
                   </Link>
                 )}
               </li>

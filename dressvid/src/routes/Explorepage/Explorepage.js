@@ -38,10 +38,14 @@ const Explorepage = () => {
   const word = "selectedExploreOptions";
   const exploreSelected = useSelector((state) => state.explore[word]);
   const watchStatusSelected = useSelector(
-    (state) => state.statusLater.watchedLaterNums
+    (state) => state?.statusLater?.watchedLaterNums
   );
-  const likeStatusSelected = useSelector((state) => state.statusLike.LikedNums);
-  const fullPlaylist = useSelector((state) => state.playListmgmt.fullPlaylist);
+  const likeStatusSelected = useSelector(
+    (state) => state?.statusLike?.LikedNums
+  );
+  const fullPlaylist = useSelector(
+    (state) => state?.playListmgmt?.fullPlaylist
+  );
   const dispatch = useDispatch();
   const inputChangeHandler = (e) => {
     dispatch(SearchFilter(e.target.value));
