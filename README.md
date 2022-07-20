@@ -5,6 +5,8 @@ This is a fully functional video library app build using redux toolkit and fireb
 
 Hosted Link:
 
+## Features
+
 - Home Page
 - Video Listing Page
 - Playlist Management
