@@ -3,7 +3,7 @@
 
 This is a fully functional video library app build using redux toolkit and firebase containing the below features
 
-Hosted Link:
+Hosted Link: [dressVid](https://deluxe-quokka-cd37d2.netlify.app/)
 
 ## Features
 
