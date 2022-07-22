@@ -6,8 +6,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { SidebarData } from "./sidebar.data";
 import { useDispatch, useSelector } from "react-redux";
-import { signOutUser } from "../../utils/firebase.utils";
-import { changeUserStatus } from "../../features/Auth/AuthSlice";
+
 import { toast } from "react-toastify";
 import "./sidebar.css";
 
@@ -24,8 +23,6 @@ const Sidebar = () => {
   };
 
   const signOutHandler = async (e) => {
-    // const yes = await signOutUser();
-    // dispatch(changeUserStatus());
     e.preventDefault();
     localStorage.removeItem("VideoLibraryToken");
     navigate("/");
@@ -33,8 +30,6 @@ const Sidebar = () => {
       autoClose: 3000,
     });
   };
-
-  // const userStatus = useSelector((state) => state.authMgmt.userStatus);
 
   return (
     <>
@@ -50,20 +45,6 @@ const Sidebar = () => {
         </div>
 
         <div className="signIn-btn-container">
-          {/* {userStatus ? (
-            <button className="user-btn signOut-btn" onClick={signOutHandler}>
-              <FaRegUserCircle /> Sign Out
-            </button>
-          ) : (
-            <button className="user-btn signIn-btn" onClick={signInNavigate}>
-              <FaRegUserCircle /> Sign In
-            </button>
-          )} */}
-
-          {/* <button className="user-btn signOut-btn" onClick={signOutHandler}>
-            <FaRegUserCircle /> Sign Out
-          </button> */}
-
           {localStorage.getItem("VideoLibraryToken") ? (
             <button className="user-btn signOut-btn" onClick={signOutHandler}>
               <FaRegUserCircle /> Sign Out
