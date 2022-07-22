@@ -4,11 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { changeUserStatus } from "../../features/Auth/AuthSlice";
-// import {
-//   createAuthUserWithEmailAndPassword,
-//   createUserDocumentFromAuth,
-// } from "../../utils/firebase.utils";
+
 import "./SignUppage.css";
 
 const defaultFormFields = {
@@ -33,34 +29,6 @@ const SignUppage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // if (password !== confirmPassword) {
-    //   toast.error("Passwords do not match", {
-    //     autoClose: 3000,
-    //   });
-    //   return;
-    // }
-
-    // try {
-    //   const { user } = await createAuthUserWithEmailAndPassword(
-    //     email,
-    //     password
-    //   );
-
-    //   await createUserDocumentFromAuth(user, { displayName });
-    //   navigate("/");
-    //   dispatch(changeUserStatus());
-    //   resetFormFields();
-    // } catch (error) {
-    //   if (error.code === "auth/email-a;ready-in-use") {
-    //     toast.error("Cannot create user.Email already in use", {
-    //       autoClose: 3000,
-    //     });
-    //   } else {
-    //     toast.error("user creation encountered an error", {
-    //       autoClose: 3000,
-    //     });
-    //   }
-    // }
     try {
       const response = await axios.post("/api/auth/signup", {
         firstName: FirstName,

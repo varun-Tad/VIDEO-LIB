@@ -5,14 +5,12 @@ import { BsDisplay } from "react-icons/bs";
 import { FaRegUserCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { SidebarData } from "./sidebar.data";
-import { useDispatch, useSelector } from "react-redux";
 
 import { toast } from "react-toastify";
 import "./sidebar.css";
 
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const toggleSideBar = () => {
     setSidebar(!sidebar);

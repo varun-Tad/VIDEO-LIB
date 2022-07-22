@@ -4,12 +4,9 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 const initialState = {
-  // exploreOptions: [...exploreData],
-  exploreOptions: [],
-  // selectedExploreOptions: [...exploreData],
-  // existingOptions: [...exploreData],
-  selectedExploreOptions: [],
-  existingOptions: [],
+  exploreOptions: [...exploreData],
+  selectedExploreOptions: [...exploreData],
+  existingOptions: [...exploreData],
   loading: false,
   error: "",
 };
@@ -53,14 +50,11 @@ const exploreSlice = createSlice({
     });
     builder.addCase(fetchVideos.fulfilled, (state, action) => {
       state.loading = false;
-      state.exploreOptions = action.payload;
-      state.existingOptions = action.payload;
-      state.selectedExploreOptions = action.payload;
       state.error = "";
     });
     builder.addCase(fetchVideos.rejected, (state, action) => {
       state.loading = false;
-      state.exploreOptions = [];
+
       state.error = action.error.message;
     });
   },

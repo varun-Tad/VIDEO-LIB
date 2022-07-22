@@ -12,7 +12,7 @@ import Playlistpage from "./routes/PlaylistPage/Playlistpage";
 import { Singleplaylistpage } from "./routes/PlaylistPage/Singleplaylistpage";
 import SignInpage from "./routes/SignInPage/SignInpage";
 import SignUppage from "./routes/SignUpPage/SignUppage";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
