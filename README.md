@@ -1,7 +1,7 @@
 # VIDEO-LIB
 
 
-This is a fully functional video library app build using redux toolkit and mockbee containing the below features
+This is a fully functional video library app build using redux toolkit and mockbee Auth containing the below features
 
 Hosted Link: [dressVid](https://deluxe-quokka-cd37d2.netlify.app/)
 
