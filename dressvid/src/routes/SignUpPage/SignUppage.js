@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useDispatch } from "react-redux";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { changeUserStatus } from "../../features/Auth/AuthSlice";
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-} from "../../utils/firebase.utils";
+// import { changeUserStatus } from "../../features/Auth/AuthSlice";
+// import {
+//   createAuthUserWithEmailAndPassword,
+//   createUserDocumentFromAuth,
+// } from "../../utils/firebase.utils";
 import "./SignUppage.css";
 
 const defaultFormFields = {
@@ -19,7 +20,7 @@ const defaultFormFields = {
 
 const SignUppage = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { displayName, email, password, confirmPassword } = formFields;
+  const { FirstName, email, LastName, Password } = formFields;
   const [pwdType, setpwdType] = useState("password");
   const [pwdText, setPwdText] = useState("Show password");
   let navigate = useNavigate();
@@ -32,33 +33,51 @@ const SignUppage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match", {
+    // if (password !== confirmPassword) {
+    //   toast.error("Passwords do not match", {
+    //     autoClose: 3000,
+    //   });
+    //   return;
+    // }
+
+    // try {
+    //   const { user } = await createAuthUserWithEmailAndPassword(
+    //     email,
+    //     password
+    //   );
+
+    //   await createUserDocumentFromAuth(user, { displayName });
+    //   navigate("/");
+    //   dispatch(changeUserStatus());
+    //   resetFormFields();
+    // } catch (error) {
+    //   if (error.code === "auth/email-a;ready-in-use") {
+    //     toast.error("Cannot create user.Email already in use", {
+    //       autoClose: 3000,
+    //     });
+    //   } else {
+    //     toast.error("user creation encountered an error", {
+    //       autoClose: 3000,
+    //     });
+    //   }
+    // }
+    try {
+      const response = await axios.post("/api/auth/signup", {
+        firstName: FirstName,
+        lastName: LastName,
+        email: email,
+        password: Password,
+      });
+      navigate("/");
+      localStorage.setItem("VideoLibraryToken", response.data.encodedToken);
+      resetFormFields();
+      toast.success("You have signed up!", {
         autoClose: 3000,
       });
-      return;
-    }
-
-    try {
-      const { user } = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-
-      await createUserDocumentFromAuth(user, { displayName });
-      navigate("/");
-      dispatch(changeUserStatus());
-      resetFormFields();
     } catch (error) {
-      if (error.code === "auth/email-a;ready-in-use") {
-        toast.error("Cannot create user.Email already in use", {
-          autoClose: 3000,
-        });
-      } else {
-        toast.error("user creation encountered an error", {
-          autoClose: 3000,
-        });
-      }
+      toast.error("Error in sign up.Try again !", {
+        autoClose: 3000,
+      });
     }
   };
 
@@ -83,11 +102,23 @@ const SignUppage = () => {
           <input
             className="basic-inp-box"
             type="text"
-            placeholder="Enter name"
+            placeholder="Enter First name"
             required
             onChange={handleChange}
-            name="displayName"
-            value={displayName}
+            name="FirstName"
+            value={FirstName}
+          />
+        </div>
+        <div className="inp-boxes">
+          <label></label>
+          <input
+            className="basic-inp-box"
+            type="text"
+            placeholder="Enter Last name"
+            required
+            onChange={handleChange}
+            name="LastName"
+            value={LastName}
           />
         </div>
         <div className="inp-boxes">
@@ -95,30 +126,14 @@ const SignUppage = () => {
           <input
             className="basic-inp-box"
             type="email"
-            placeholder="Enter email"
+            placeholder="Enter Email"
             required
             onChange={handleChange}
             name="email"
             value={email}
           />
         </div>
-        <div className="inp-boxes">
-          <label></label>
-          <input
-            className="basic-inp-box"
-            type={pwdType}
-            placeholder="Enter Password"
-            required
-            onChange={handleChange}
-            name="password"
-            value={password}
-          />
-        </div>
-        <div className="show-pwd">
-          <small className="showPwd-text" onClick={pwdHandler}>
-            {pwdText}
-          </small>
-        </div>
+
         <div className="inp-boxes">
           <label></label>
           <input
@@ -127,8 +142,8 @@ const SignUppage = () => {
             placeholder="Confirm password"
             required
             onChange={handleChange}
-            name="confirmPassword"
-            value={confirmPassword}
+            name="Password"
+            value={Password}
           />
         </div>
         <div className="show-pwd">

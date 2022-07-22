@@ -23,16 +23,18 @@ const Sidebar = () => {
     navigate("/signIn");
   };
 
-  const signOutHandler = async () => {
-    const yes = await signOutUser();
-    dispatch(changeUserStatus());
+  const signOutHandler = async (e) => {
+    // const yes = await signOutUser();
+    // dispatch(changeUserStatus());
+    e.preventDefault();
+    localStorage.removeItem("VideoLibraryToken");
     navigate("/");
     toast.success("Logout successful", {
       autoClose: 3000,
     });
   };
 
-  const userStatus = useSelector((state) => state.authMgmt.userStatus);
+  // const userStatus = useSelector((state) => state.authMgmt.userStatus);
 
   return (
     <>
@@ -48,7 +50,21 @@ const Sidebar = () => {
         </div>
 
         <div className="signIn-btn-container">
-          {userStatus ? (
+          {/* {userStatus ? (
+            <button className="user-btn signOut-btn" onClick={signOutHandler}>
+              <FaRegUserCircle /> Sign Out
+            </button>
+          ) : (
+            <button className="user-btn signIn-btn" onClick={signInNavigate}>
+              <FaRegUserCircle /> Sign In
+            </button>
+          )} */}
+
+          {/* <button className="user-btn signOut-btn" onClick={signOutHandler}>
+            <FaRegUserCircle /> Sign Out
+          </button> */}
+
+          {localStorage.getItem("VideoLibraryToken") ? (
             <button className="user-btn signOut-btn" onClick={signOutHandler}>
               <FaRegUserCircle /> Sign Out
             </button>
@@ -73,7 +89,7 @@ const Sidebar = () => {
           {SidebarData.map(({ title, path, altpath, icon, cName }, index) => {
             return (
               <li key={index} className={cName}>
-                {userStatus ? (
+                {localStorage.getItem("VideoLibraryToken") ? (
                   <Link to={path}>
                     {icon}
                     <span>{title}</span>

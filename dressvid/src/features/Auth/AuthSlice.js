@@ -1,18 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+// import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  userStatus: false,
-};
+// const initialState = {
+//   userStatus: false,
+// };
 
-const authSlice = createSlice({
-  name: "Auth",
-  initialState,
-  reducers: {
-    changeUserStatus: (state) => {
-      state.userStatus = !state.userStatus;
-    },
-  },
-});
+// const authSlice = createSlice({
+//   name: "Auth",
+//   initialState,
+//   reducers: {
+//     changeUserStatus: (state) => {
+//       state.userStatus = !state.userStatus;
+//     },
+//   },
+// });
 
-export default authSlice.reducer;
-export const { changeUserStatus } = authSlice.actions;
+// export default authSlice.reducer;
+// export const { changeUserStatus } = authSlice.actions;

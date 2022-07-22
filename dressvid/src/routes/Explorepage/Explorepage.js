@@ -74,7 +74,7 @@ const Explorepage = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchVideos());
+    dispatch(fetchVideos("Yes"));
   }, []);
 
   return (
@@ -194,6 +194,7 @@ const Explorepage = () => {
                     onClick={() => {
                       dispatch(setLikeStatus(ele.id));
                       dispatch(addLiked(ele));
+
                       toast.success("Video Liked !", {
                         autoClose: 3000,
                       });

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { exploreData } from "../../routes/Explorepage/explore.data";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 const initialState = {
@@ -14,9 +15,14 @@ const initialState = {
 };
 
 export const fetchVideos = createAsyncThunk("explore/fetchVideos", async () => {
-  const response = await axios.get("/api/videos");
-  console.log(response.data.videos);
-  return response.data.videos;
+  try {
+    const response = await axios.get("/api/videos");
+    return response.data.videos;
+  } catch (err) {
+    toast.error("Error Fetching videos", {
+      autoClose: 3000,
+    });
+  }
 });
 
 const exploreSlice = createSlice({
