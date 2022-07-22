@@ -3,7 +3,7 @@
 
 This is a fully functional video library app built using redux toolkit and mockbee Auth containing the below features
 
-Hosted Link: [dressVid](https://deluxe-quokka-cd37d2.netlify.app/)
+Hosted Link: [dressVid](https://dressvid.netlify.app/)
 
 ## Features
 
