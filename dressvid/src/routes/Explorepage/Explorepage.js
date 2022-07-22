@@ -4,6 +4,7 @@ import {
   OptionsFilter,
   AllFilter,
   SearchFilter,
+  fetchVideos,
 } from "../../features/explore/exploreSlice";
 import {
   addWatchLater,
@@ -30,13 +31,14 @@ import { AiFillClockCircle } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "./Explorepage.css";
 
 const Explorepage = () => {
   const word = "selectedExploreOptions";
   const exploreSelected = useSelector((state) => state.explore[word]);
+  const exploreSl = useSelector((state) => state.explore);
   const watchStatusSelected = useSelector(
     (state) => state?.statusLater?.watchedLaterNums
   );
@@ -70,6 +72,10 @@ const Explorepage = () => {
     dispatch(createPlaylist(enteredPlaylistName));
     setEnteredPlaylistName("");
   };
+
+  useEffect(() => {
+    dispatch(fetchVideos());
+  }, []);
 
   return (
     <div className="explore-page">
@@ -143,6 +149,7 @@ const Explorepage = () => {
         </button>
         <button onClick={() => dispatch(OptionsFilter("Vlogs"))}>Vlogs</button>
       </div>
+      {exploreSl.loading && <div className="loader"></div>}
       <main className="main-section">
         {exploreSelected.map((ele) => (
           <div className="optionCard" key={ele.id}>

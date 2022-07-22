@@ -1,11 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { exploreData } from "../../routes/Explorepage/explore.data";
+import axios from "axios";
 
 const initialState = {
-  exploreOptions: [...exploreData],
-  selectedExploreOptions: [...exploreData],
-  existingOptions: [...exploreData],
+  // exploreOptions: [...exploreData],
+  exploreOptions: [],
+  // selectedExploreOptions: [...exploreData],
+  // existingOptions: [...exploreData],
+  selectedExploreOptions: [],
+  existingOptions: [],
+  loading: false,
+  error: "",
 };
+
+export const fetchVideos = createAsyncThunk("explore/fetchVideos", async () => {
+  const response = await axios.get("/api/videos");
+  console.log(response.data.videos);
+  return response.data.videos;
+});
 
 const exploreSlice = createSlice({
   name: "explore",
@@ -28,6 +40,23 @@ const exploreSlice = createSlice({
           .includes(action.payload.toLocaleLowerCase())
       );
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchVideos.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchVideos.fulfilled, (state, action) => {
+      state.loading = false;
+      state.exploreOptions = action.payload;
+      state.existingOptions = action.payload;
+      state.selectedExploreOptions = action.payload;
+      state.error = "";
+    });
+    builder.addCase(fetchVideos.rejected, (state, action) => {
+      state.loading = false;
+      state.exploreOptions = [];
+      state.error = action.error.message;
+    });
   },
 });
 

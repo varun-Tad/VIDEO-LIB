@@ -6,7 +6,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
+import { makeServer } from "./server";
 
+// Call make Server
+makeServer();
 const container = document.getElementById("root");
 const root = createRoot(container);
 
