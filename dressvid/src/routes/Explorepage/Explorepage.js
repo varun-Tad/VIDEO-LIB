@@ -74,7 +74,7 @@ const Explorepage = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchVideos("Yes"));
+    dispatch(fetchVideos());
   }, []);
 
   return (
