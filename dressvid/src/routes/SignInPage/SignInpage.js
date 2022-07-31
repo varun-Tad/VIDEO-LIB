@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch } from "react-redux";
 import axios from "axios";
 import "./SignInpage.css";
 
@@ -14,11 +13,29 @@ const defaultFormFields = {
 const SignInpage = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-  let dispatch = useDispatch();
   let navigate = useNavigate();
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
+  };
+
+  const guestLoginHandler = async () => {
+    try {
+      const response = await axios.post("/api/auth/login", {
+        email: "adarshbalika@gmail.com",
+        password: "adarshBalika123",
+      });
+      localStorage.setItem("VideoLibraryToken", response.data.encodedToken);
+      resetFormFields();
+      navigate("/");
+      toast.success("You are logged in !", {
+        autoClose: 3000,
+      });
+    } catch (err) {
+      toast.error("Error in login.Try again !", {
+        autoClose: 3000,
+      });
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -78,6 +95,13 @@ const SignInpage = () => {
         </div>
         <button type="submit" className="submit-btn">
           Login
+        </button>
+        <button
+          onClick={guestLoginHandler}
+          type="button"
+          className="submit-btn"
+        >
+          Guest login
         </button>
         <p className="signUp-para">
           Don't have an account?{" "}

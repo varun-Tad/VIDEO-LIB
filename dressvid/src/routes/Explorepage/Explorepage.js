@@ -77,6 +77,44 @@ const Explorepage = () => {
     dispatch(fetchVideos());
   }, []);
 
+  const likeVideoDispatch = (ele) => {
+    dispatch(setLikeStatus(ele.id));
+    dispatch(addLiked(ele));
+
+    toast.success("Video Liked !", {
+      autoClose: 3000,
+    });
+  };
+
+  const unlikeVideoDispatch = (ele) => {
+    dispatch(removeLikeSetStatus(ele.id));
+    dispatch(removedLiked(ele));
+    toast.success("Video Unliked !", {
+      autoClose: 3000,
+    });
+  };
+
+  const addWatchLaterDispatch = (ele) => {
+    dispatch(setStatus(ele.id));
+    dispatch(addWatchLater(ele));
+    toast.success("Video added to watch later !", {
+      autoClose: 3000,
+    });
+  };
+
+  const removeWatchLaterDispatch = (ele) => {
+    dispatch(removeSetStatus(ele.id));
+    dispatch(removeWatchLater(ele));
+    toast.success("Video removed from watch later!", {
+      autoClose: 3000,
+    });
+  };
+
+  const playlistDispatch = (ele) => {
+    modalHandler();
+    setSelectedVd(ele);
+  };
+
   return (
     <div className="explore-page">
       {modalAppear && <div className="backdrop"></div>}
@@ -169,8 +207,11 @@ const Explorepage = () => {
                 <button title="Add to playlist">
                   <MdPlaylistPlay
                     onClick={() => {
-                      modalHandler();
-                      setSelectedVd(ele);
+                      localStorage.getItem("VideoLibraryToken")
+                        ? playlistDispatch(ele)
+                        : toast.error("You are not logged in !", {
+                            autoClose: 3000,
+                          });
                     }}
                   />
                 </button>
@@ -179,11 +220,11 @@ const Explorepage = () => {
                   <button
                     title="Unlike video"
                     onClick={() => {
-                      dispatch(removeLikeSetStatus(ele.id));
-                      dispatch(removedLiked(ele));
-                      toast.success("Video Unliked !", {
-                        autoClose: 3000,
-                      });
+                      localStorage.getItem("VideoLibraryToken")
+                        ? unlikeVideoDispatch(ele)
+                        : toast.error("You are not logged in !", {
+                            autoClose: 3000,
+                          });
                     }}
                   >
                     <AiOutlineDislike />
@@ -192,12 +233,11 @@ const Explorepage = () => {
                   <button
                     title="Like video"
                     onClick={() => {
-                      dispatch(setLikeStatus(ele.id));
-                      dispatch(addLiked(ele));
-
-                      toast.success("Video Liked !", {
-                        autoClose: 3000,
-                      });
+                      localStorage.getItem("VideoLibraryToken")
+                        ? likeVideoDispatch(ele)
+                        : toast.error("You are not logged in !", {
+                            autoClose: 3000,
+                          });
                     }}
                   >
                     <AiOutlineLike />
@@ -206,11 +246,11 @@ const Explorepage = () => {
                 {watchStatusSelected.some((everyNum) => everyNum === ele.id) ? (
                   <button
                     onClick={() => {
-                      dispatch(removeSetStatus(ele.id));
-                      dispatch(removeWatchLater(ele));
-                      toast.success("Video removed from watch later!", {
-                        autoClose: 3000,
-                      });
+                      localStorage.getItem("VideoLibraryToken")
+                        ? removeWatchLaterDispatch(ele)
+                        : toast.error("You are not logged in !", {
+                            autoClose: 3000,
+                          });
                     }}
                     title="Remove from watch later"
                   >
@@ -219,11 +259,11 @@ const Explorepage = () => {
                 ) : (
                   <button
                     onClick={() => {
-                      dispatch(setStatus(ele.id));
-                      dispatch(addWatchLater(ele));
-                      toast.success("Video added to watch later !", {
-                        autoClose: 3000,
-                      });
+                      localStorage.getItem("VideoLibraryToken")
+                        ? addWatchLaterDispatch(ele)
+                        : toast.error("You are not logged in !", {
+                            autoClose: 3000,
+                          });
                     }}
                     title="Watch later"
                   >
