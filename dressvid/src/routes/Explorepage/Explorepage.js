@@ -231,7 +231,7 @@ const Explorepage = () => {
                   </button>
                 ) : (
                   <button
-                    title="Like video"
+                    title="Like Video"
                     onClick={() => {
                       localStorage.getItem("VideoLibraryToken")
                         ? likeVideoDispatch(ele)

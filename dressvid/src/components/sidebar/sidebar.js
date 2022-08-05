@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import "./sidebar.css";
 
 const Sidebar = () => {
-  const [sidebar, setSidebar] = useState(false);
+  const [sidebar, setSidebar] = useState(true);
   const navigate = useNavigate();
   const toggleSideBar = () => {
     setSidebar(!sidebar);
@@ -55,7 +55,8 @@ const Sidebar = () => {
         </div>
       </div>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-        <ul className="nav-menu-items" onClick={toggleSideBar}>
+        {/* <ul className="nav-menu-items" onClick={toggleSideBar}> */}
+        <ul className="nav-menu-items">
           <li className="navbar-toggle">
             <div className="logo-name-container">
               <BsDisplay className="logo" />

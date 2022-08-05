@@ -3,9 +3,9 @@
   margin-bottom: 5rem;
 }
 
-img {
-  height: 600px;
-  width: 1500px;
+.home-hero img {
+  height: 45rem;
+  width: 100rem;
 }
 
 .tag-line {
@@ -15,73 +15,55 @@ img {
   font-size: 50px;
   color: var(--color-white);
 }
-.categories {
-  display: flex;
-  flex-direction: row;
-  row-gap: 5rem;
-  text-align: center;
-}
 
-.brands {
-  width: 25%;
-  height: 15rem;
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 5px solid var(--color-black);
-  margin: 0 7.5px 15px;
-  overflow: hidden;
-  background-position: center;
-}
-
-.fashionShows {
-  width: 25%;
-  height: 15rem;
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 5px solid var(--color-black);
-  margin: 0 7.5px 15px;
-  overflow: hidden;
-}
-
-.fashionCourse {
-  width: 25%;
-  height: 15rem;
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 5px solid var(--color-black);
-  margin: 0 7.5px 15px;
-  overflow: hidden;
-}
-
-.fashionVlogs {
-  width: 25%;
-  height: 15rem;
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 5px solid var(--color-black);
-  margin: 0 7.5px 15px;
-  overflow: hidden;
-}
-
-h2 {
-  background: var(--light-white);
-  opacity: 0.4;
-  text-align: center;
+.exp-btn {
   position: relative;
-  left: 46rem;
-  padding: 1rem;
+  bottom: 18rem;
+  left: 44rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.7rem;
+  font-weight: 600;
+}
+
+.categories {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 3rem;
+  margin-left: 20rem;
   cursor: pointer;
 }
 
 .title {
   text-align: center;
   font-size: 3rem;
+}
+
+.img-cont {
+  position: relative;
+  width: 20rem;
+  height: 17rem;
+  text-align: center;
+  border: 2px solid var(--color-black);
+  z-index: -1;
+}
+
+.img-cont img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--light-white);
+  opacity: 0.6;
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: 900;
+  color: var(--color-black);
 }

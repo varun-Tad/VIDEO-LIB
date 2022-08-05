@@ -6,7 +6,6 @@ import { X } from "phosphor-react";
 import "./Playlist.css";
 import {
   DeleteaPlaylist,
-  AddtoPlaylist,
   createPlaylist,
 } from "../../features/Playlist/PlaylistSlice";
 
@@ -28,7 +27,6 @@ const Playlistpage = () => {
     setEnteredPlaylistName("");
   };
   const [modalAppear, setModalAppear] = useState(false);
-  const [selectedVd, setSelectedVd] = useState();
   const [sameEnteredPlaylistName, setSameEnteredPlaylistName] = useState("");
   const [enteredPlaylistName, setEnteredPlaylistName] = useState("");
 
@@ -47,14 +45,6 @@ const Playlistpage = () => {
               <div key={item} className="playlist-item">
                 <div className="playlist-name">{item}</div>
                 <div className="playListItem-btns">
-                  <button
-                    className="addToPlaylist-btn"
-                    onClick={() => {
-                      dispatch(AddtoPlaylist({ selectedVd, item }));
-                    }}
-                  >
-                    Add to playlist
-                  </button>
                   <button
                     className="addToPlaylist-btn"
                     onClick={() => dispatch(DeleteaPlaylist(item))}

@@ -7,6 +7,7 @@ import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { X } from "phosphor-react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import {
   createPlaylist,
   AddtoPlaylist,
@@ -71,6 +72,43 @@ export const Singlepage = () => {
 
   const fullPlaylist = useSelector((state) => state.playListmgmt.fullPlaylist);
 
+  const likeVideoDispatch = (ele) => {
+    dispatch(setLikeStatus(ele.id));
+    dispatch(addLiked(ele));
+
+    toast.success("Video Liked !", {
+      autoClose: 3000,
+    });
+  };
+
+  const unlikeVideoDispatch = (ele) => {
+    dispatch(removeLikeSetStatus(ele.id));
+    dispatch(removedLiked(ele));
+    toast.success("Video Unliked !", {
+      autoClose: 3000,
+    });
+  };
+
+  const addWatchLaterDispatch = (ele) => {
+    dispatch(setStatus(ele.id));
+    dispatch(addWatchLater(ele));
+    toast.success("Video added to watch later !", {
+      autoClose: 3000,
+    });
+  };
+
+  const removeWatchLaterDispatch = (ele) => {
+    dispatch(removeSetStatus(ele.id));
+    dispatch(removeWatchLater(ele));
+    toast.success("Video removed from watch later!", {
+      autoClose: 3000,
+    });
+  };
+  const playlistDispatch = (ele) => {
+    modalHandler();
+    setSelectedVd(ele);
+  };
+
   return (
     <>
       <main className="video-singlePage">
@@ -88,13 +126,21 @@ export const Singlepage = () => {
                       className="addToPlaylist-btn"
                       onClick={() => {
                         dispatch(AddtoPlaylist({ selectedVd, item }));
+                        toast.success("Video added to playlist !", {
+                          autoClose: 3000,
+                        });
                       }}
                     >
                       Add to playlist
                     </button>
                     <button
                       className="addToPlaylist-btn"
-                      onClick={() => dispatch(DeleteaPlaylist(item))}
+                      onClick={() => {
+                        dispatch(DeleteaPlaylist(item));
+                        toast.success("Playlist deleted !", {
+                          autoClose: 3000,
+                        });
+                      }}
                     >
                       Delete playlist
                     </button>
@@ -141,8 +187,11 @@ export const Singlepage = () => {
                 className="btn"
                 title="Unlike video"
                 onClick={() => {
-                  dispatch(removeLikeSetStatus(selected.id));
-                  dispatch(removedLiked(selected));
+                  localStorage.getItem("VideoLibraryToken")
+                    ? unlikeVideoDispatch(selected)
+                    : toast.error("You are not logged in !", {
+                        autoClose: 3000,
+                      });
                 }}
               >
                 <AiOutlineDislike />
@@ -150,10 +199,13 @@ export const Singlepage = () => {
             ) : (
               <button
                 className="btn"
-                title="Like video"
+                title="Like Video"
                 onClick={() => {
-                  dispatch(setLikeStatus(selected.id));
-                  dispatch(addLiked(selected));
+                  localStorage.getItem("VideoLibraryToken")
+                    ? likeVideoDispatch(selected)
+                    : toast.error("You are not logged in !", {
+                        autoClose: 3000,
+                      });
                 }}
               >
                 <AiOutlineLike />
@@ -165,8 +217,11 @@ export const Singlepage = () => {
               <button
                 className="btn"
                 onClick={() => {
-                  dispatch(removeSetStatus(selected.id));
-                  dispatch(removeWatchLater(selected));
+                  localStorage.getItem("VideoLibraryToken")
+                    ? removeWatchLaterDispatch(selected)
+                    : toast.error("You are not logged in !", {
+                        autoClose: 3000,
+                      });
                 }}
                 title="Remove from watch later"
               >
@@ -176,8 +231,11 @@ export const Singlepage = () => {
               <button
                 className="btn"
                 onClick={() => {
-                  dispatch(setStatus(selected.id));
-                  dispatch(addWatchLater(selected));
+                  localStorage.getItem("VideoLibraryToken")
+                    ? addWatchLaterDispatch(selected)
+                    : toast.error("You are not logged in !", {
+                        autoClose: 3000,
+                      });
                 }}
                 title="Watch later"
               >
@@ -187,9 +245,13 @@ export const Singlepage = () => {
             <button className="btn">
               <MdPlaylistPlay
                 onClick={() => {
-                  modalHandler();
-                  setSelectedVd(selected);
+                  localStorage.getItem("VideoLibraryToken")
+                    ? playlistDispatch(selected)
+                    : toast.error("You are not logged in !", {
+                        autoClose: 3000,
+                      });
                 }}
+                title="Add to Playlist"
               />
             </button>
           </div>

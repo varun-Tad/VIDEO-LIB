@@ -48,7 +48,7 @@
 }
 
 .optionCard {
-  width: 24.6%;
+  width: 17.5rem;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   cursor: pointer;
   border-radius: 0.5rem;
@@ -57,12 +57,13 @@
 }
 
 .optionCard:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .image-container img {
-  width: 17.5rem;
+  width: 100%;
   height: 12rem;
+  object-fit: fill;
 }
 
 .text-container h3 {

@@ -68,7 +68,6 @@ const SignInpage = () => {
     <div className="signIn-page">
       <form className="login-form" onSubmit={handleSubmit}>
         <h3 className="loginh2">Login</h3>
-
         <div className="inp-boxes">
           <label htmlFor="email"></label>
           <input
