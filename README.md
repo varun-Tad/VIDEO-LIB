@@ -3,7 +3,7 @@
 
 This is a fully functional video library app built using redux toolkit and mockbee Auth containing the below features
 
-Hosted Link: [dressVid](https://dressvid-vl.netlify.app/)
+Hosted Link: [dressVid](https://dressvidvl.netlify.app/)
 
 ## Features
 
